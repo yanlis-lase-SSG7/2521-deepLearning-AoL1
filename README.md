@@ -88,6 +88,12 @@ $env:KAGGLE_API_TOKEN="YOUR_KAGGLE_API_TOKEN"
 pip install -r AoL1-requirements.txt
 ```
 
+Alternative (manual install):
+
+```powershell
+pip install pandas numpy matplotlib seaborn scikit-learn tensorflow kagglehub ydata-profiling
+```
+
 ### 5.6 Run the Notebook
 
 Open and execute:
@@ -169,12 +175,19 @@ Ignored entries and rationale:
 
 ```text
 2521-deepLearning-AoL1/
+├── .gitignore
+├── AoL Assessment Form - Project I - COMP8044041 - Deep Learning and Its Applications revised 12022026.pdf
 ├── dataset/
 │   ├── train/
 │   └── val/
-├── output_report/
 ├── AoL1-Malware-Vision.ipynb
 ├── AoL1-requirements.txt
 ├── EDA_Report_Malware.html
+├── output_report/
+├── note.txt
 └── README.md
 ```
+
+Notes:
+- `dataset/` dan `note.txt` ada di lokal untuk kebutuhan run, tetapi dikecualikan dari tracking Git sesuai `.gitignore`.
+- Folder environment seperti `venv/` juga tidak ditampilkan pada struktur utama karena bersifat lokal.
