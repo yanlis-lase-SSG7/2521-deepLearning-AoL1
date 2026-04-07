@@ -5,3 +5,5 @@ __pycache__/
 .ipynb_checkpoints/
 dataset/
 note.txt
+AoL1_Malware_Vision_Laporan_Lengkap.docx
+generate_report_docx.py
