@@ -53,6 +53,12 @@ Expected deliverables:
 	- metric comparison chart
 	- EDA charts
 
+### Quick Access: EDA Report (HTML)
+
+Click here to open the published EDA report directly:
+
+- **EDA Report:** [https://yanlis-lase-ssg7.github.io/2521-deepLearning-AoL1/EDA_Report_Malware.html](https://yanlis-lase-ssg7.github.io/2521-deepLearning-AoL1/EDA_Report_Malware.html)
+
 ## 5. Step-by-Step Installation and Usage
 
 Run commands from PowerShell.
