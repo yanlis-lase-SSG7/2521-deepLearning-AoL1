@@ -1,70 +1,67 @@
-# Deep Learning AoL 1 : [will be updated soon]
+# Deep Learning AoL 1: Malware Binary Image Classification (Computer Vision)
 
 **Student Name:** Yanlis Alim Sang Putra Lase  
 **Student ID:** 2702751284  
 **Program:** Master's in Informatics, BINUS Graduate Program
 
-This repository contains the implementation and documentation for a Deep Learning assignment (Forum 03) focused on modeling workforce welfare indicators in Indonesia.
+This repository contains Project I (AoL) implementation for COMP8044041, focused on malware family classification using computer vision on byteplot images.
 
 ## 1. Project Overview
 
-This project applies a **Multi-Layer Perceptron (MLP)** approach to predict the welfare ratio of workers in Indonesia using integrated socio-economic indicators. The prediction target is a welfare proxy ratio built from wage and expenditure variables, allowing the model to capture purchasing-power-oriented welfare patterns rather than wage magnitude alone.
+This project addresses a cybersecurity computer vision case: **multi-class malware image classification (31 families)**. PE malware binaries are represented as grayscale byteplot images, then classified with deep learning models.
 
-The research objective is both predictive and comparative: to build a robust end-to-end machine learning pipeline and evaluate how architecture depth and optimization settings affect generalization quality.
+The project is designed for comparative and analytical objectives:
+1. Build and evaluate a baseline CNN model.
+2. Implement and compare three state-of-the-art transfer learning architectures.
+3. Analyze model performance with full evaluation metrics and class-level error patterns.
 
 ## 2. Data Source
 
-All data originates from **Badan Pusat Statistik (BPS)** and is accessed through Kaggle:
+Dataset source:
+- **Kaggle dataset:** `gauravpendharkar/blended-malware-image-dataset`
 
-- **Kaggle dataset:** `rezkyyayang/pekerja-sejahtera`
+Dataset composition:
+- Total classes: **31 malware families**
+- Total images: around **13.7K**
+- Split: pre-split directories (`train/` and `val/`)
+- Format: grayscale PNG images (byteplot representation)
 
-The project uses exactly 8 dataset files, covering raw and processed versions of the four primary domains (GK, UMP, Upah, Pengeluaran):
-
-| No. | Domain | Raw File | Processed File | Description |
-|---|---|---|---|---|
-| 1 | GK (Garis Kemiskinan) | `gk.csv` | `gk.df.csv` | Poverty line indicators used as contextual socio-economic input |
-| 2 | UMP (Upah Minimum Provinsi) | `ump.csv` | `ump.df.csv` | Provincial minimum wage indicators |
-| 3 | Upah (Wages) | `upah.csv` | `upah.df.csv` | Worker wage information used in target construction |
-| 4 | Pengeluaran (Expenditure) | `peng.csv` | `peng.df.csv` | Expenditure indicators used for welfare ratio formation |
+Data examples are shown directly in notebook EDA sections:
+- class distribution chart
+- sample byteplot images from multiple classes
+- intensity and metadata summaries
 
 ## 3. Function and Purpose
 
-The project is designed to perform the following core functions:
-
-1. Predict the target variable **`upah_peng_ratio`** as a welfare ratio indicator.
-2. Evaluate two MLP architectures for performance and stability comparison: **2-layer MLP** versus **4-layer MLP**.
-3. Compare optimization behavior under multiple learning rates:
-
-- `1e-3`
-- `1e-4`
-- `1e-5`
-- `1e-6`
-
-The comparative design supports a methodologically structured analysis of model capacity versus optimization granularity.
+Core functions of this project:
+1. Classify malware images into 31 classes.
+2. Compare four deep learning architectures:
+	- **Model 1:** Baseline CNN (from scratch)
+	- **Model 2:** ResNet50V2 transfer learning
+	- **Model 3:** EfficientNetB0 transfer learning
+	- **Model 4:** MobileNetV2 transfer learning
+3. Provide comparative analysis using Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
 
 ## 4. Expected Output
 
-The expected deliverables of this project are:
-
-1. **Trained MLP models** for each architecture and configuration scenario.
-2. **Automated EDA report** generated as `EDA_Report_Welfare.html`.
-3. **Visual loss evolution graphs** (training and validation loss curves) for architecture and learning-rate analysis.
-
-### Quick Access: EDA Report (HTML)
-
-Click here to open the published EDA report directly:
-
-- **EDA Report:** [https://yanlis-lase-SSG7.github.io/2521-deepLearning-forum03/EDA_Report_Welfare.html](https://yanlis-lase-SSG7.github.io/2521-deepLearning-forum03/EDA_Report_Welfare.html)
+Expected deliverables:
+1. Trained models and histories for four architectures.
+2. Automated EDA report: `EDA_Report_Malware.html`.
+3. Saved visualization artifacts in `output_report/`:
+	- training curves
+	- confusion matrices
+	- metric comparison chart
+	- EDA charts
 
 ## 5. Step-by-Step Installation and Usage
 
-Run the following commands in PowerShell from your preferred working directory.
+Run commands from PowerShell.
 
 ### 5.1 Git Clone
 
 ```powershell
-git clone https://github.com/yanlis-lase-SSG7/2521-deepLearning-forum03.git
-cd 2521-deepLearning-forum03
+git clone https://github.com/yanlis-lase-SSG7/2521-deepLearning-AoL1.git
+cd 2521-deepLearning-AoL1
 ```
 
 ### 5.2 Create Virtual Environment
@@ -79,7 +76,7 @@ python -m venv venv
 .\venv\Scripts\activate
 ```
 
-### 5.4 Set Kaggle Token
+### 5.4 Set Kaggle Token (Do Not Hardcode in Files)
 
 ```powershell
 $env:KAGGLE_API_TOKEN="YOUR_KAGGLE_API_TOKEN"
@@ -88,26 +85,17 @@ $env:KAGGLE_API_TOKEN="YOUR_KAGGLE_API_TOKEN"
 ### 5.5 Install Dependencies
 
 ```powershell
-pip install -r Forum03-requirements.txt
+pip install -r AoL1-requirements.txt
 ```
 
-Alternative (manual install):
-
-```powershell
-pip install pandas numpy matplotlib seaborn scikit-learn tensorflow kagglehub ydata-profiling
-```
-
-### 5.6 Run the Project Notebook
+### 5.6 Run the Notebook
 
 Open and execute:
+- `AoL1-Malware-Vision.ipynb`
 
-- `Forum03-pekerja_sejahtera_question.ipynb`
-
-For reproducible results, run notebook cells sequentially from top to bottom.
+For reproducibility, run cells sequentially from top to bottom.
 
 ## 6. Technical Requirements
-
-The technical stack for this project includes:
 
 - Python 3.9+
 - TensorFlow 2.x
@@ -116,63 +104,66 @@ The technical stack for this project includes:
 - NumPy
 - Matplotlib
 - Seaborn
+- Pillow
 - KaggleHub
-- ydata-profiling
 - Jupyter Notebook / VS Code Notebook support
 
-> Note (Windows): TensorFlow in this notebook is configured to run on CPU for native Windows compatibility.
+> Note (Windows): native TensorFlow is configured to run on CPU.
 
 ## 7. Architecture Details
 
-The following table summarizes the two MLP architectures evaluated in this assignment:
-
-| Component | Model 01 | Model 02 |
-|---|---|---|
-| Hidden-layer depth | 2 layers | 4 layers |
-| Hidden neurons | 64-32 | 128-64-32-16 |
-| Output layer | 1 neuron (regression output) | 1 neuron (regression output) |
-| Purpose | Baseline architecture with lower complexity | Deeper architecture for richer non-linear representation |
+| Aspect | Model 1 | Model 2 | Model 3 | Model 4 |
+|---|---|---|---|---|
+| Name | Baseline CNN | ResNet50V2 TL | EfficientNetB0 TL | MobileNetV2 TL |
+| Strategy | From scratch | Frozen backbone + custom head | Frozen backbone + custom head | Frozen backbone + custom head |
+| Input handling | Grayscale direct | Grayscale to pseudo-RGB | Grayscale to pseudo-RGB | Grayscale to pseudo-RGB |
+| Objective | Baseline reference | Strong SOTA transfer baseline | Efficient SOTA transfer baseline | Lightweight SOTA baseline |
 
 ## 8. Workflow (How it Works)
 
-The full pipeline is implemented as a structured sequence:
+1. **Environment Setup & Authentication**  
+	Validate Kaggle token from environment variable.
 
-1. **Data Integration**  
-	Consolidate GK, UMP, Upah, and Pengeluaran datasets into a unified analytical table.
+2. **Dataset Retrieval and Validation**  
+	Download dataset (if missing), validate `train/` and `val/` folder integrity.
 
-2. **Local Dataset Caching**  
-	Check `dataset/` first; download from Kaggle only when CSV cache is not available.
+3. **EDA and Data Understanding**  
+	Explore class distribution, sample images, pixel statistics, and metadata report.
 
-3. **Hierarchical Imputation (Province-Region-Type)**  
-	Handle missing values progressively using grouped medians in hierarchical order to preserve local socio-economic context.
+4. **TensorFlow Input Pipeline**  
+	Load images with resize (`128x128`), normalization, batching, and prefetch.
 
-4. **One-Hot Encoding**  
-	Convert categorical attributes into model-compatible binary feature vectors.
-
-5. **Power Transformation**  
-	Apply a PowerTransformer to stabilize target distribution and improve optimization behavior.
+5. **Model Building**  
+	Build baseline CNN and three transfer learning models.
 
 6. **Training**  
-	Train the MLP architectures under controlled hyperparameter settings.
+	Train all models under the same hyperparameter setup for fair comparison.
 
-7. **Validation**  
-	Evaluate model behavior using validation curves and comparative metrics across architecture depth and learning rates.
+7. **Evaluation and Comparison**  
+	Evaluate using full metrics and confusion matrices; summarize best-performing model.
+
+8. **Analysis by Learning Objectives**  
+	Interpret architecture-performance relation (LO4), advancements/challenges (LO5), and design innovation (LO6).
+
+## 9. AoL Form Coverage Checklist
+
+This notebook is aligned with Project I AoL instructions:
+1. Computer vision case/topic is clearly defined and motivated.
+2. Dataset source, composition, and examples are documented.
+3. Multiple deep learning models are implemented and experimented.
+4. Model performance is evaluated and compared with clear analysis.
+5. Source code and report artifacts are included in the repository.
 
 ## Repository Structure
 
 ```text
-2521-deepLearning-forum03/
+2521-deepLearning-AoL1/
 ├── dataset/
-│   ├── gk.csv
-│   ├── gk.df.csv
-│   ├── peng.csv
-│   ├── peng.df.csv
-│   ├── ump.csv
-│   ├── ump.df.csv
-│   ├── upah.csv
-│   └── upah.df.csv
-├── EDA_Report_Welfare.html
-├── Forum03-pekerja_sejahtera_question.ipynb
-├── Forum03-requirements.txt
+│   ├── train/
+│   └── val/
+├── output_report/
+├── AoL1-Malware-Vision.ipynb
+├── AoL1-requirements.txt
+├── EDA_Report_Malware.html
 └── README.md
 ```
