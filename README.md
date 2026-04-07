@@ -154,6 +154,17 @@ This notebook is aligned with Project I AoL instructions:
 4. Model performance is evaluated and compared with clear analysis.
 5. Source code and report artifacts are included in the repository.
 
+## 10. .gitignore Policy (What Is Excluded and Why)
+
+This project uses `.gitignore` to keep the repository clean, lightweight, and secure.
+
+Ignored entries and rationale:
+- `venv/` and `.venv/`: local Python virtual environment folders; machine-specific and reproducible via requirements file.
+- `__pycache__/` and `*.pyc`: auto-generated Python cache/bytecode files that should not be versioned.
+- `.ipynb_checkpoints/`: auto-saved Jupyter checkpoints to avoid noisy commits.
+- `dataset/`: large dataset files are excluded from Git history; dataset is downloaded locally from Kaggle.
+- `note.txt`: local note file is excluded to prevent accidental leakage of sensitive local notes/tokens.
+
 ## Repository Structure
 
 ```text
